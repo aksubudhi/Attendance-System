@@ -1,0 +1,403 @@
+2025-12-05 15:43:18,257 - services - INFO - [services.py:206] - PostgreSQL connection pool initialized
+2025-12-05 15:43:18,257 - services - INFO - [services.py:983] - Authentication service initialized
+2025-12-05 15:43:18,257 - services - INFO - [services.py:1258] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 15:43:18,257 - services - INFO - [services.py:1259] -   Recognition threshold: 0.4
+2025-12-05 15:43:18,257 - services - INFO - [services.py:1260] -   Multi-angle validation: ENABLED
+2025-12-05 15:43:18,257 - services - INFO - [services.py:1261] -   FAISS Index: Ready for initialization
+2025-12-05 15:43:18,257 - services - INFO - [services.py:66] - WebSocketManager initialized
+2025-12-05 15:43:18,257 - services - INFO - [services.py:1547] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 15:43:18,257 - api - INFO - [api.py:171] - All services initialized successfully
+2025-12-05 15:43:18,270 - api - INFO - [api.py:1262] - Starting system...
+2025-12-05 15:43:18,278 - services - INFO - [services.py:367] - PostgreSQL schema initialized with combined employees table
+2025-12-05 15:43:18,279 - services - INFO - [services.py:437] - Authentication schema initialized
+2025-12-05 15:43:18,279 - api - INFO - [api.py:1275] - Camera URLs loaded:
+2025-12-05 15:43:18,279 - api - INFO - [api.py:1276] -   Entry: ...
+2025-12-05 15:43:18,279 - api - INFO - [api.py:1277] -   Exit: ...
+2025-12-05 15:43:18,300 - services - INFO - [services.py:690] - Loaded 15 active employees with embeddings
+2025-12-05 15:43:18,301 - services - INFO - [services.py:1336] - Initializing FAISS GPU resources...
+2025-12-05 15:43:18,301 - api - CRITICAL - [api.py:1298] - Startup failed: module 'faiss' has no attribute 'StandardGpuResources'
+2025-12-05 15:45:01,796 - services - INFO - [services.py:206] - PostgreSQL connection pool initialized
+2025-12-05 15:45:01,796 - services - INFO - [services.py:983] - Authentication service initialized
+2025-12-05 15:45:01,797 - services - INFO - [services.py:1258] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 15:45:01,797 - services - INFO - [services.py:1259] -   Recognition threshold: 0.4
+2025-12-05 15:45:01,797 - services - INFO - [services.py:1260] -   Multi-angle validation: ENABLED
+2025-12-05 15:45:01,797 - services - INFO - [services.py:1261] -   FAISS Index: Ready for initialization
+2025-12-05 15:45:01,797 - services - INFO - [services.py:66] - WebSocketManager initialized
+2025-12-05 15:45:01,797 - services - INFO - [services.py:1549] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 15:45:01,797 - api - INFO - [api.py:171] - All services initialized successfully
+2025-12-05 15:45:01,811 - api - INFO - [api.py:1262] - Starting system...
+2025-12-05 15:45:01,813 - services - INFO - [services.py:367] - PostgreSQL schema initialized with combined employees table
+2025-12-05 15:45:01,814 - services - INFO - [services.py:437] - Authentication schema initialized
+2025-12-05 15:45:01,814 - api - INFO - [api.py:1275] - Camera URLs loaded:
+2025-12-05 15:45:01,814 - api - INFO - [api.py:1276] -   Entry: ...
+2025-12-05 15:45:01,814 - api - INFO - [api.py:1277] -   Exit: ...
+2025-12-05 15:45:01,826 - services - INFO - [services.py:690] - Loaded 15 active employees with embeddings
+2025-12-05 15:45:01,826 - services - INFO - [services.py:1344] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:45:01,827 - services - INFO - [services.py:1358] - Face map loaded: 15 employees, 120 embeddings
+2025-12-05 15:45:01,827 - api - INFO - [api.py:1350] - ======================================================================
+2025-12-05 15:45:01,827 - api - INFO - [api.py:1367] - 🕐 Background scheduler thread started
+2025-12-05 15:45:01,827 - api - INFO - [api.py:1351] - ✅ Daily Scheduler Started
+2025-12-05 15:45:01,827 - api - INFO - [api.py:1292] - ======================================================================
+2025-12-05 15:45:01,828 - api - INFO - [api.py:1352] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 15:45:01,828 - api - INFO - [api.py:1353] - ======================================================================
+2025-12-05 15:45:01,828 - api - INFO - [api.py:1293] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 15:45:01,828 - api - INFO - [api.py:1294] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 15:45:01,828 - api - INFO - [api.py:1295] -  Loaded 15 employees
+2025-12-05 15:45:01,828 - api - INFO - [api.py:1296] - ======================================================================
+2025-12-05 15:48:10,020 - api - WARNING - [api.py:116] - Invalid session for /api/auth/check
+2025-12-05 15:48:10,026 - api - WARNING - [api.py:116] - Invalid session for /api/auth/check
+2025-12-05 15:48:18,080 - services - WARNING - [services.py:1019] - Login attempt - invalid password: admin
+2025-12-05 15:48:22,496 - services - WARNING - [services.py:1019] - Login attempt - invalid password: admin
+2025-12-05 15:48:35,905 - services - WARNING - [services.py:1019] - Login attempt - invalid password: admin123
+2025-12-05 15:48:36,657 - services - WARNING - [services.py:1019] - Login attempt - invalid password: admin123
+2025-12-05 15:48:36,962 - services - WARNING - [services.py:1019] - Login attempt - invalid password: admin123
+2025-12-05 15:48:37,166 - services - WARNING - [services.py:1019] - Login attempt - invalid password: admin123
+2025-12-05 15:48:37,347 - services - WARNING - [services.py:1019] - Login attempt - invalid password: admin123
+2025-12-05 15:50:11,864 - services - INFO - [services.py:1178] - Cleaned up 2 expired sessions
+2025-12-05 15:50:11,864 - api - INFO - [api.py:1311] - System shutdown complete
+2025-12-05 15:50:13,405 - services - INFO - [services.py:207] - PostgreSQL connection pool initialized
+2025-12-05 15:50:13,405 - services - INFO - [services.py:984] - Authentication service initialized
+2025-12-05 15:50:13,405 - services - INFO - [services.py:1271] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 15:50:13,405 - services - INFO - [services.py:1272] -   Recognition threshold: 0.4
+2025-12-05 15:50:13,405 - services - INFO - [services.py:1273] -   Multi-angle validation: ENABLED
+2025-12-05 15:50:13,406 - services - INFO - [services.py:1274] -   FAISS Index: Ready for initialization
+2025-12-05 15:50:13,406 - services - INFO - [services.py:67] - WebSocketManager initialized
+2025-12-05 15:50:13,406 - services - INFO - [services.py:1562] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 15:50:13,406 - api - INFO - [api.py:171] - All services initialized successfully
+2025-12-05 15:50:13,423 - api - INFO - [api.py:1262] - Starting system...
+2025-12-05 15:50:13,426 - services - INFO - [services.py:368] - PostgreSQL schema initialized with combined employees table
+2025-12-05 15:50:13,427 - services - INFO - [services.py:438] - Authentication schema initialized
+2025-12-05 15:50:13,427 - api - INFO - [api.py:1275] - Camera URLs loaded:
+2025-12-05 15:50:13,427 - api - INFO - [api.py:1276] -   Entry: ...
+2025-12-05 15:50:13,427 - api - INFO - [api.py:1277] -   Exit: ...
+2025-12-05 15:50:13,439 - services - INFO - [services.py:691] - Loaded 15 active employees with embeddings
+2025-12-05 15:50:13,439 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:50:13,439 - services - INFO - [services.py:1371] - Face map loaded: 15 employees, 120 embeddings
+2025-12-05 15:50:13,440 - api - INFO - [api.py:1350] - ======================================================================
+2025-12-05 15:50:13,440 - api - INFO - [api.py:1367] - 🕐 Background scheduler thread started
+2025-12-05 15:50:13,440 - api - INFO - [api.py:1351] - ✅ Daily Scheduler Started
+2025-12-05 15:50:13,440 - api - INFO - [api.py:1292] - ======================================================================
+2025-12-05 15:50:13,440 - api - INFO - [api.py:1352] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 15:50:13,440 - api - INFO - [api.py:1293] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 15:50:13,440 - api - INFO - [api.py:1353] - ======================================================================
+2025-12-05 15:50:13,440 - api - INFO - [api.py:1294] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 15:50:13,441 - api - INFO - [api.py:1295] -  Loaded 15 employees
+2025-12-05 15:50:13,441 - api - INFO - [api.py:1296] - ======================================================================
+2025-12-05 15:51:21,327 - api - INFO - [api.py:1311] - System shutdown complete
+2025-12-05 15:51:24,018 - services - INFO - [services.py:207] - PostgreSQL connection pool initialized
+2025-12-05 15:51:24,018 - services - INFO - [services.py:984] - Authentication service initialized
+2025-12-05 15:51:24,018 - services - INFO - [services.py:1271] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 15:51:24,018 - services - INFO - [services.py:1272] -   Recognition threshold: 0.4
+2025-12-05 15:51:24,018 - services - INFO - [services.py:1273] -   Multi-angle validation: ENABLED
+2025-12-05 15:51:24,018 - services - INFO - [services.py:1274] -   FAISS Index: Ready for initialization
+2025-12-05 15:51:24,018 - services - INFO - [services.py:67] - WebSocketManager initialized
+2025-12-05 15:51:24,018 - services - INFO - [services.py:1562] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 15:51:24,018 - api - INFO - [api.py:171] - All services initialized successfully
+2025-12-05 15:51:24,032 - api - INFO - [api.py:1262] - Starting system...
+2025-12-05 15:51:24,034 - services - INFO - [services.py:368] - PostgreSQL schema initialized with combined employees table
+2025-12-05 15:51:24,035 - services - INFO - [services.py:438] - Authentication schema initialized
+2025-12-05 15:51:24,036 - api - INFO - [api.py:1275] - Camera URLs loaded:
+2025-12-05 15:51:24,036 - api - INFO - [api.py:1276] -   Entry: ...
+2025-12-05 15:51:24,036 - api - INFO - [api.py:1277] -   Exit: ...
+2025-12-05 15:51:24,051 - services - INFO - [services.py:691] - Loaded 15 active employees with embeddings
+2025-12-05 15:51:24,052 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:51:24,052 - services - INFO - [services.py:1371] - Face map loaded: 15 employees, 120 embeddings
+2025-12-05 15:51:24,053 - api - INFO - [api.py:1350] - ======================================================================
+2025-12-05 15:51:24,053 - api - INFO - [api.py:1367] - 🕐 Background scheduler thread started
+2025-12-05 15:51:24,053 - api - INFO - [api.py:1351] - ✅ Daily Scheduler Started
+2025-12-05 15:51:24,054 - api - INFO - [api.py:1292] - ======================================================================
+2025-12-05 15:51:24,054 - api - INFO - [api.py:1352] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 15:51:24,054 - api - INFO - [api.py:1293] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 15:51:24,054 - api - INFO - [api.py:1353] - ======================================================================
+2025-12-05 15:51:24,054 - api - INFO - [api.py:1294] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 15:51:24,054 - api - INFO - [api.py:1295] -  Loaded 15 employees
+2025-12-05 15:51:24,054 - api - INFO - [api.py:1296] - ======================================================================
+2025-12-05 15:51:27,628 - api - WARNING - [api.py:116] - Invalid session for /api/auth/check
+2025-12-05 15:51:27,631 - api - WARNING - [api.py:116] - Invalid session for /api/auth/check
+2025-12-05 15:51:51,017 - services - WARNING - [services.py:1015] - Login attempt - account locked: admin123
+2025-12-05 15:52:29,667 - services - WARNING - [services.py:1015] - Login attempt - account locked: admin123
+2025-12-05 15:52:50,385 - api - INFO - [api.py:1311] - System shutdown complete
+2025-12-05 15:52:51,949 - services - INFO - [services.py:207] - PostgreSQL connection pool initialized
+2025-12-05 15:52:51,949 - services - INFO - [services.py:984] - Authentication service initialized
+2025-12-05 15:52:51,949 - services - INFO - [services.py:1271] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 15:52:51,949 - services - INFO - [services.py:1272] -   Recognition threshold: 0.4
+2025-12-05 15:52:51,949 - services - INFO - [services.py:1273] -   Multi-angle validation: ENABLED
+2025-12-05 15:52:51,949 - services - INFO - [services.py:1274] -   FAISS Index: Ready for initialization
+2025-12-05 15:52:51,949 - services - INFO - [services.py:67] - WebSocketManager initialized
+2025-12-05 15:52:51,949 - services - INFO - [services.py:1562] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 15:52:51,949 - api - INFO - [api.py:171] - All services initialized successfully
+2025-12-05 15:52:51,960 - api - INFO - [api.py:1262] - Starting system...
+2025-12-05 15:52:51,962 - services - INFO - [services.py:368] - PostgreSQL schema initialized with combined employees table
+2025-12-05 15:52:51,963 - services - INFO - [services.py:438] - Authentication schema initialized
+2025-12-05 15:52:51,963 - api - INFO - [api.py:1275] - Camera URLs loaded:
+2025-12-05 15:52:51,963 - api - INFO - [api.py:1276] -   Entry: ...
+2025-12-05 15:52:51,963 - api - INFO - [api.py:1277] -   Exit: ...
+2025-12-05 15:52:51,974 - services - INFO - [services.py:691] - Loaded 15 active employees with embeddings
+2025-12-05 15:52:51,975 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:52:51,975 - services - INFO - [services.py:1371] - Face map loaded: 15 employees, 120 embeddings
+2025-12-05 15:52:51,975 - api - INFO - [api.py:1350] - ======================================================================
+2025-12-05 15:52:51,975 - api - INFO - [api.py:1367] - 🕐 Background scheduler thread started
+2025-12-05 15:52:51,975 - api - INFO - [api.py:1351] - ✅ Daily Scheduler Started
+2025-12-05 15:52:51,975 - api - INFO - [api.py:1292] - ======================================================================
+2025-12-05 15:52:51,976 - api - INFO - [api.py:1352] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 15:52:51,976 - api - INFO - [api.py:1293] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 15:52:51,976 - api - INFO - [api.py:1353] - ======================================================================
+2025-12-05 15:52:51,976 - api - INFO - [api.py:1294] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 15:52:51,976 - api - INFO - [api.py:1295] -  Loaded 15 employees
+2025-12-05 15:52:51,976 - api - INFO - [api.py:1296] - ======================================================================
+2025-12-05 15:54:20,364 - services - INFO - [services.py:1035] - User authenticated: ADMIN
+2025-12-05 15:54:20,366 - services - INFO - [services.py:1116] - Session created for user: ADMIN
+2025-12-05 15:54:20,367 - api - INFO - [api.py:240] - Login successful: ADMIN
+2025-12-05 15:54:40,520 - services - INFO - [services.py:596] - Employee deactivated: 1381
+2025-12-05 15:54:40,538 - services - INFO - [services.py:691] - Loaded 14 active employees with embeddings
+2025-12-05 15:54:40,539 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:54:40,539 - services - INFO - [services.py:1371] - Face map loaded: 14 employees, 112 embeddings
+2025-12-05 15:54:43,305 - services - INFO - [services.py:596] - Employee deactivated: 1380
+2025-12-05 15:54:43,320 - services - INFO - [services.py:691] - Loaded 13 active employees with embeddings
+2025-12-05 15:54:43,321 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:54:43,321 - services - INFO - [services.py:1371] - Face map loaded: 13 employees, 104 embeddings
+2025-12-05 15:54:46,231 - services - INFO - [services.py:596] - Employee deactivated: 1353
+2025-12-05 15:54:46,262 - services - INFO - [services.py:691] - Loaded 12 active employees with embeddings
+2025-12-05 15:54:46,263 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:54:46,263 - services - INFO - [services.py:1371] - Face map loaded: 12 employees, 96 embeddings
+2025-12-05 15:54:49,047 - services - INFO - [services.py:596] - Employee deactivated: 1388
+2025-12-05 15:54:49,069 - services - INFO - [services.py:691] - Loaded 11 active employees with embeddings
+2025-12-05 15:54:49,070 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:54:49,070 - services - INFO - [services.py:1371] - Face map loaded: 11 employees, 88 embeddings
+2025-12-05 15:54:53,707 - services - INFO - [services.py:596] - Employee deactivated: 1356
+2025-12-05 15:54:53,729 - services - INFO - [services.py:691] - Loaded 10 active employees with embeddings
+2025-12-05 15:54:53,730 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:54:53,730 - services - INFO - [services.py:1371] - Face map loaded: 10 employees, 80 embeddings
+2025-12-05 15:59:23,650 - services - INFO - [services.py:1188] - Cleaned up 1 expired sessions
+2025-12-05 15:59:23,650 - api - INFO - [api.py:1311] - System shutdown complete
+2025-12-05 15:59:25,228 - services - INFO - [services.py:207] - PostgreSQL connection pool initialized
+2025-12-05 15:59:25,228 - services - INFO - [services.py:984] - Authentication service initialized
+2025-12-05 15:59:25,228 - services - INFO - [services.py:1271] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 15:59:25,229 - services - INFO - [services.py:1272] -   Recognition threshold: 0.4
+2025-12-05 15:59:25,229 - services - INFO - [services.py:1273] -   Multi-angle validation: ENABLED
+2025-12-05 15:59:25,229 - services - INFO - [services.py:1274] -   FAISS Index: Ready for initialization
+2025-12-05 15:59:25,229 - services - INFO - [services.py:67] - WebSocketManager initialized
+2025-12-05 15:59:25,229 - services - INFO - [services.py:1562] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 15:59:25,229 - api - INFO - [api.py:175] - All services initialized successfully
+2025-12-05 15:59:25,240 - api - INFO - [api.py:1266] - Starting system...
+2025-12-05 15:59:25,243 - services - INFO - [services.py:368] - PostgreSQL schema initialized with combined employees table
+2025-12-05 15:59:25,244 - services - INFO - [services.py:438] - Authentication schema initialized
+2025-12-05 15:59:25,245 - api - INFO - [api.py:1279] - Camera URLs loaded:
+2025-12-05 15:59:25,245 - api - INFO - [api.py:1280] -   Entry: ...
+2025-12-05 15:59:25,245 - api - INFO - [api.py:1281] -   Exit: ...
+2025-12-05 15:59:25,252 - services - INFO - [services.py:691] - Loaded 10 active employees with embeddings
+2025-12-05 15:59:25,253 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:59:25,253 - services - INFO - [services.py:1371] - Face map loaded: 10 employees, 80 embeddings
+2025-12-05 15:59:25,253 - api - INFO - [api.py:1354] - ======================================================================
+2025-12-05 15:59:25,253 - api - INFO - [api.py:1371] - 🕐 Background scheduler thread started
+2025-12-05 15:59:25,254 - api - INFO - [api.py:1355] - ✅ Daily Scheduler Started
+2025-12-05 15:59:25,254 - api - INFO - [api.py:1296] - ======================================================================
+2025-12-05 15:59:25,254 - api - INFO - [api.py:1356] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 15:59:25,254 - api - INFO - [api.py:1297] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 15:59:25,254 - api - INFO - [api.py:1357] - ======================================================================
+2025-12-05 15:59:25,254 - api - INFO - [api.py:1298] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 15:59:25,254 - api - INFO - [api.py:1299] -  Loaded 10 employees
+2025-12-05 15:59:25,254 - api - INFO - [api.py:1300] - ======================================================================
+2025-12-05 15:59:25,758 - api - INFO - [api.py:1315] - System shutdown complete
+2025-12-05 15:59:27,298 - services - INFO - [services.py:207] - PostgreSQL connection pool initialized
+2025-12-05 15:59:27,298 - services - INFO - [services.py:984] - Authentication service initialized
+2025-12-05 15:59:27,299 - services - INFO - [services.py:1271] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 15:59:27,299 - services - INFO - [services.py:1272] -   Recognition threshold: 0.4
+2025-12-05 15:59:27,299 - services - INFO - [services.py:1273] -   Multi-angle validation: ENABLED
+2025-12-05 15:59:27,299 - services - INFO - [services.py:1274] -   FAISS Index: Ready for initialization
+2025-12-05 15:59:27,299 - services - INFO - [services.py:67] - WebSocketManager initialized
+2025-12-05 15:59:27,299 - services - INFO - [services.py:1562] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 15:59:27,299 - api - INFO - [api.py:175] - All services initialized successfully
+2025-12-05 15:59:27,312 - api - INFO - [api.py:1266] - Starting system...
+2025-12-05 15:59:27,314 - services - INFO - [services.py:368] - PostgreSQL schema initialized with combined employees table
+2025-12-05 15:59:27,315 - services - INFO - [services.py:438] - Authentication schema initialized
+2025-12-05 15:59:27,315 - api - INFO - [api.py:1279] - Camera URLs loaded:
+2025-12-05 15:59:27,315 - api - INFO - [api.py:1280] -   Entry: ...
+2025-12-05 15:59:27,315 - api - INFO - [api.py:1281] -   Exit: ...
+2025-12-05 15:59:27,323 - services - INFO - [services.py:691] - Loaded 10 active employees with embeddings
+2025-12-05 15:59:27,323 - services - INFO - [services.py:1357] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 15:59:27,323 - services - INFO - [services.py:1371] - Face map loaded: 10 employees, 80 embeddings
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1354] - ======================================================================
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1371] - 🕐 Background scheduler thread started
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1355] - ✅ Daily Scheduler Started
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1296] - ======================================================================
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1356] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1297] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1357] - ======================================================================
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1298] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1299] -  Loaded 10 employees
+2025-12-05 15:59:27,324 - api - INFO - [api.py:1300] - ======================================================================
+2025-12-05 16:03:30,832 - api - INFO - [api.py:1315] - System shutdown complete
+2025-12-05 16:20:49,097 - services - INFO - [services.py:204] - PostgreSQL connection pool initialized
+2025-12-05 16:20:49,097 - services - INFO - [services.py:985] - Authentication service initialized
+2025-12-05 16:20:49,097 - services - INFO - [services.py:1320] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 16:20:49,097 - services - INFO - [services.py:1321] -   Recognition threshold: 0.4
+2025-12-05 16:20:49,097 - services - INFO - [services.py:1322] -   Multi-angle validation: ENABLED
+2025-12-05 16:20:49,097 - services - INFO - [services.py:1323] -   FAISS Index: Ready for initialization
+2025-12-05 16:20:49,097 - services - INFO - [services.py:64] - WebSocketManager initialized
+2025-12-05 16:20:49,097 - services - INFO - [services.py:1611] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 16:20:49,097 - api - INFO - [api.py:175] - All services initialized successfully
+2025-12-05 16:20:49,110 - api - INFO - [api.py:1271] - Starting system...
+2025-12-05 16:20:49,112 - services - INFO - [services.py:365] - PostgreSQL schema initialized with combined employees table
+2025-12-05 16:20:49,113 - services - INFO - [services.py:435] - Authentication schema initialized
+2025-12-05 16:20:49,113 - api - INFO - [api.py:1284] - Camera URLs loaded:
+2025-12-05 16:20:49,113 - api - INFO - [api.py:1285] -   Entry: ...
+2025-12-05 16:20:49,113 - api - INFO - [api.py:1286] -   Exit: ...
+2025-12-05 16:20:49,121 - services - INFO - [services.py:688] - Loaded 10 active employees with embeddings
+2025-12-05 16:20:49,121 - services - INFO - [services.py:1406] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 16:20:49,121 - services - INFO - [services.py:1420] - Face map loaded: 10 employees, 80 embeddings
+2025-12-05 16:20:49,121 - api - INFO - [api.py:1359] - ======================================================================
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1376] - 🕐 Background scheduler thread started
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1360] - ✅ Daily Scheduler Started
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1301] - ======================================================================
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1361] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1302] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1362] - ======================================================================
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1303] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1304] -  Loaded 10 employees
+2025-12-05 16:20:49,122 - api - INFO - [api.py:1305] - ======================================================================
+2025-12-05 16:20:55,311 - api - WARNING - [api.py:116] - Invalid session for /api/auth/check
+2025-12-05 16:20:55,315 - api - WARNING - [api.py:116] - Invalid session for /api/auth/check
+2025-12-05 16:21:03,947 - services - WARNING - [services.py:992] - ⚠️ Using Default In-Memory ADMIN access
+2025-12-05 16:21:03,947 - services - INFO - [services.py:1128] - In-memory session created for ADMIN
+2025-12-05 16:21:03,950 - api - INFO - [api.py:249] - Login successful: ADMIN
+2025-12-05 16:21:11,034 - services - INFO - [services.py:593] - Employee deactivated: 1171
+2025-12-05 16:21:11,055 - services - INFO - [services.py:688] - Loaded 9 active employees with embeddings
+2025-12-05 16:21:11,055 - services - INFO - [services.py:1406] -    Index type: CPU Flat Inner Product (Cosine Similarity)
+2025-12-05 16:21:11,056 - services - INFO - [services.py:1420] - Face map loaded: 9 employees, 72 embeddings
+2025-12-05 16:22:32,197 - api - INFO - [api.py:1320] - System shutdown complete
+2025-12-05 16:27:55,000 - api - WARNING - [api.py:169] - Invalid DB_PORT '', defaulting to 5432
+2025-12-05 16:27:55,002 - services - CRITICAL - [services.py:206] - PostgreSQL pool creation failed: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "oasys" does not exist
+
+2025-12-05 16:27:55,002 - api - ERROR - [api.py:185] - Database connection failed: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "oasys" does not exist
+
+2025-12-05 16:27:55,002 - api - WARNING - [api.py:186] - Starting in EMERGENCY MODE (Admin only)
+2025-12-05 16:27:55,003 - services - INFO - [services.py:985] - Authentication service initialized
+2025-12-05 16:27:55,003 - services - INFO - [services.py:1320] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 16:27:55,003 - services - INFO - [services.py:1321] -   Recognition threshold: 0.4
+2025-12-05 16:27:55,003 - services - INFO - [services.py:1322] -   Multi-angle validation: ENABLED
+2025-12-05 16:27:55,003 - services - INFO - [services.py:1323] -   FAISS Index: Ready for initialization
+2025-12-05 16:27:55,003 - services - INFO - [services.py:64] - WebSocketManager initialized
+2025-12-05 16:27:55,003 - services - INFO - [services.py:1611] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 16:27:55,003 - api - INFO - [api.py:199] - All services initialized (some may be in emergency mode)
+2025-12-05 16:27:55,014 - api - INFO - [api.py:1297] - Starting system...
+2025-12-05 16:27:55,014 - api - CRITICAL - [api.py:1333] - Startup failed: 'MockDBService' object has no attribute 'init_schema'
+2025-12-05 16:27:58,125 - api - WARNING - [api.py:169] - Invalid DB_PORT '', defaulting to 5432
+2025-12-05 16:27:58,126 - services - CRITICAL - [services.py:206] - PostgreSQL pool creation failed: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "oasys" does not exist
+
+2025-12-05 16:27:58,127 - api - ERROR - [api.py:185] - Database connection failed: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL:  database "oasys" does not exist
+
+2025-12-05 16:27:58,127 - api - WARNING - [api.py:186] - Starting in EMERGENCY MODE (Admin only)
+2025-12-05 16:27:58,127 - services - INFO - [services.py:985] - Authentication service initialized
+2025-12-05 16:27:58,127 - services - INFO - [services.py:1320] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 16:27:58,127 - services - INFO - [services.py:1321] -   Recognition threshold: 0.4
+2025-12-05 16:27:58,127 - services - INFO - [services.py:1322] -   Multi-angle validation: ENABLED
+2025-12-05 16:27:58,127 - services - INFO - [services.py:1323] -   FAISS Index: Ready for initialization
+2025-12-05 16:27:58,127 - services - INFO - [services.py:64] - WebSocketManager initialized
+2025-12-05 16:27:58,127 - services - INFO - [services.py:1611] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 16:27:58,127 - api - INFO - [api.py:199] - All services initialized (some may be in emergency mode)
+2025-12-05 16:27:58,137 - api - INFO - [api.py:1297] - Starting system...
+2025-12-05 16:27:58,137 - api - CRITICAL - [api.py:1333] - Startup failed: 'MockDBService' object has no attribute 'init_schema'
+2025-12-05 17:57:06,250 - services - INFO - [services.py:204] - PostgreSQL connection pool initialized
+2025-12-05 17:57:06,253 - services - INFO - [services.py:981] - Authentication service initialized
+2025-12-05 17:57:06,254 - services - INFO - [services.py:1268] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 17:57:06,254 - services - INFO - [services.py:1269] -   Recognition threshold: 0.4
+2025-12-05 17:57:06,254 - services - INFO - [services.py:1270] -   Multi-angle validation: ENABLED
+2025-12-05 17:57:06,254 - services - INFO - [services.py:1271] -   FAISS Index: Ready for initialization
+2025-12-05 17:57:06,254 - services - INFO - [services.py:64] - WebSocketManager initialized
+2025-12-05 17:57:06,255 - services - INFO - [services.py:1559] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 17:57:06,255 - api - INFO - [api.py:172] - All services initialized successfully
+2025-12-05 17:57:06,280 - api - INFO - [api.py:1263] - Starting system...
+2025-12-05 17:57:09,343 - services - INFO - [services.py:365] - PostgreSQL schema initialized with combined employees table
+2025-12-05 17:57:11,463 - services - INFO - [services.py:435] - Authentication schema initialized
+2025-12-05 17:57:11,464 - api - INFO - [api.py:1276] - Camera URLs loaded:
+2025-12-05 17:57:11,464 - api - INFO - [api.py:1277] -   Entry: ...
+2025-12-05 17:57:11,465 - api - INFO - [api.py:1278] -   Exit: ...
+2025-12-05 17:57:11,770 - services - INFO - [services.py:688] - Loaded 0 active employees with embeddings
+2025-12-05 17:57:11,919 - services - WARNING - [services.py:1364] - ⚠️ No embeddings to load - FAISS index is empty
+2025-12-05 17:57:11,920 - services - INFO - [services.py:1368] - Face map loaded: 0 employees, 0 embeddings
+2025-12-05 17:57:11,921 - api - INFO - [api.py:1351] - ======================================================================
+2025-12-05 17:57:11,922 - api - INFO - [api.py:1368] - 🕐 Background scheduler thread started
+2025-12-05 17:57:11,922 - api - INFO - [api.py:1352] - ✅ Daily Scheduler Started
+2025-12-05 17:57:11,922 - api - INFO - [api.py:1293] - ======================================================================
+2025-12-05 17:57:11,922 - api - INFO - [api.py:1353] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 17:57:11,923 - api - INFO - [api.py:1294] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 17:57:11,923 - api - INFO - [api.py:1295] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 17:57:11,923 - api - INFO - [api.py:1296] -  Loaded 0 employees
+2025-12-05 17:57:11,923 - api - INFO - [api.py:1354] - ======================================================================
+2025-12-05 17:57:11,923 - api - INFO - [api.py:1297] - ======================================================================
+2025-12-05 17:58:43,408 - api - INFO - [api.py:1312] - System shutdown complete
+2025-12-05 17:58:51,366 - services - INFO - [services.py:204] - PostgreSQL connection pool initialized
+2025-12-05 17:58:51,366 - services - INFO - [services.py:981] - Authentication service initialized
+2025-12-05 17:58:51,366 - services - INFO - [services.py:1268] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 17:58:51,367 - services - INFO - [services.py:1269] -   Recognition threshold: 0.4
+2025-12-05 17:58:51,367 - services - INFO - [services.py:1270] -   Multi-angle validation: ENABLED
+2025-12-05 17:58:51,367 - services - INFO - [services.py:1271] -   FAISS Index: Ready for initialization
+2025-12-05 17:58:51,367 - services - INFO - [services.py:64] - WebSocketManager initialized
+2025-12-05 17:58:51,367 - services - INFO - [services.py:1559] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 17:58:51,367 - api - INFO - [api.py:172] - All services initialized successfully
+2025-12-05 17:58:51,388 - api - INFO - [api.py:1263] - Starting system...
+2025-12-05 17:58:54,492 - services - INFO - [services.py:365] - PostgreSQL schema initialized with combined employees table
+2025-12-05 17:58:56,634 - services - INFO - [services.py:435] - Authentication schema initialized
+2025-12-05 17:58:56,635 - api - INFO - [api.py:1276] - Camera URLs loaded:
+2025-12-05 17:58:56,635 - api - INFO - [api.py:1277] -   Entry: ...
+2025-12-05 17:58:56,636 - api - INFO - [api.py:1278] -   Exit: ...
+2025-12-05 17:58:56,949 - services - INFO - [services.py:688] - Loaded 0 active employees with embeddings
+2025-12-05 17:58:57,103 - services - WARNING - [services.py:1364] - ⚠️ No embeddings to load - FAISS index is empty
+2025-12-05 17:58:57,103 - services - INFO - [services.py:1368] - Face map loaded: 0 employees, 0 embeddings
+2025-12-05 17:58:57,104 - api - INFO - [api.py:1351] - ======================================================================
+2025-12-05 17:58:57,104 - api - INFO - [api.py:1368] - 🕐 Background scheduler thread started
+2025-12-05 17:58:57,105 - api - INFO - [api.py:1352] - ✅ Daily Scheduler Started
+2025-12-05 17:58:57,105 - api - INFO - [api.py:1293] - ======================================================================
+2025-12-05 17:58:57,105 - api - INFO - [api.py:1353] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 17:58:57,105 - api - INFO - [api.py:1294] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 17:58:57,105 - api - INFO - [api.py:1354] - ======================================================================
+2025-12-05 17:58:57,105 - api - INFO - [api.py:1295] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 17:58:57,106 - api - INFO - [api.py:1296] -  Loaded 0 employees
+2025-12-05 17:58:57,106 - api - INFO - [api.py:1297] - ======================================================================
+2025-12-05 17:58:58,549 - services - INFO - [services.py:1032] - User authenticated: ADMIN
+2025-12-05 17:58:59,170 - services - INFO - [services.py:1113] - Session created for user: ADMIN
+2025-12-05 17:58:59,628 - api - INFO - [api.py:241] - Login successful: ADMIN
+2025-12-05 17:59:26,698 - services - INFO - [services.py:477] - Employee created: 1
+2025-12-05 18:00:39,326 - services - INFO - [services.py:593] - Employee deactivated: 1
+2025-12-05 18:00:39,636 - services - INFO - [services.py:688] - Loaded 0 active employees with embeddings
+2025-12-05 18:00:39,787 - services - WARNING - [services.py:1364] - ⚠️ No embeddings to load - FAISS index is empty
+2025-12-05 18:00:39,787 - services - INFO - [services.py:1368] - Face map loaded: 0 employees, 0 embeddings
+2025-12-05 18:03:13,971 - api - INFO - [api.py:1312] - System shutdown complete
+2025-12-05 18:03:24,262 - services - INFO - [services.py:204] - PostgreSQL connection pool initialized
+2025-12-05 18:03:24,263 - services - INFO - [services.py:981] - Authentication service initialized
+2025-12-05 18:03:24,263 - services - INFO - [services.py:1268] - ✅ Face recognition service initialized (model not loaded yet)
+2025-12-05 18:03:24,263 - services - INFO - [services.py:1269] -   Recognition threshold: 0.4
+2025-12-05 18:03:24,264 - services - INFO - [services.py:1270] -   Multi-angle validation: ENABLED
+2025-12-05 18:03:24,264 - services - INFO - [services.py:1271] -   FAISS Index: Ready for initialization
+2025-12-05 18:03:24,264 - services - INFO - [services.py:64] - WebSocketManager initialized
+2025-12-05 18:03:24,264 - services - INFO - [services.py:1559] - Camera service initialized with UPDATE-ONLY mode
+2025-12-05 18:03:24,264 - api - INFO - [api.py:172] - All services initialized successfully
+2025-12-05 18:03:24,276 - api - INFO - [api.py:1263] - Starting system...
+2025-12-05 18:03:26,958 - services - INFO - [services.py:365] - PostgreSQL schema initialized with combined employees table
+2025-12-05 18:03:28,820 - services - INFO - [services.py:435] - Authentication schema initialized
+2025-12-05 18:03:28,821 - api - INFO - [api.py:1276] - Camera URLs loaded:
+2025-12-05 18:03:28,821 - api - INFO - [api.py:1277] -   Entry: ...
+2025-12-05 18:03:28,821 - api - INFO - [api.py:1278] -   Exit: ...
+2025-12-05 18:03:29,087 - services - INFO - [services.py:688] - Loaded 0 active employees with embeddings
+2025-12-05 18:03:29,217 - services - WARNING - [services.py:1364] - ⚠️ No embeddings to load - FAISS index is empty
+2025-12-05 18:03:29,218 - services - INFO - [services.py:1368] - Face map loaded: 0 employees, 0 embeddings
+2025-12-05 18:03:29,219 - api - INFO - [api.py:1351] - ======================================================================
+2025-12-05 18:03:29,219 - api - INFO - [api.py:1368] - 🕐 Background scheduler thread started
+2025-12-05 18:03:29,220 - api - INFO - [api.py:1352] - ✅ Daily Scheduler Started
+2025-12-05 18:03:29,220 - api - INFO - [api.py:1293] - ======================================================================
+2025-12-05 18:03:29,220 - api - INFO - [api.py:1353] -    Reset time: 12:30 AM IST (19:00 UTC)
+2025-12-05 18:03:29,220 - api - INFO - [api.py:1294] -  SYSTEM READY - PRODUCTION v5.0.0
+2025-12-05 18:03:29,220 - api - INFO - [api.py:1354] - ======================================================================
+2025-12-05 18:03:29,221 - api - INFO - [api.py:1295] -  Features: Connection Pooling, Pagination, Multi-User, Race-Safe
+2025-12-05 18:03:29,221 - api - INFO - [api.py:1296] -  Loaded 0 employees
+2025-12-05 18:03:29,221 - api - INFO - [api.py:1297] - ======================================================================
+2025-12-05 18:03:30,780 - services - INFO - [services.py:1032] - User authenticated: ADMIN
+2025-12-05 18:03:31,352 - services - INFO - [services.py:1113] - Session created for user: ADMIN
+2025-12-05 18:03:31,760 - api - INFO - [api.py:241] - Login successful: ADMIN
+2025-12-05 18:03:48,857 - services - INFO - [services.py:463] - Employee reactivated: 1
+2025-12-05 18:04:09,885 - services - INFO - [services.py:593] - Employee deactivated: 1
+2025-12-05 18:04:10,177 - services - INFO - [services.py:688] - Loaded 0 active employees with embeddings
+2025-12-05 18:04:10,308 - services - WARNING - [services.py:1364] - ⚠️ No embeddings to load - FAISS index is empty
+2025-12-05 18:04:10,308 - services - INFO - [services.py:1368] - Face map loaded: 0 employees, 0 embeddings
+2025-12-05 18:04:19,734 - api - INFO - [api.py:1312] - System shutdown complete

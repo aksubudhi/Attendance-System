@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Employee Management</title>
+    <link rel="stylesheet" href="/static/css/employees.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="/static/js/auth-check.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Employee Management System - CCTV Attendance">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        .copyright-footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 2px solid #e5e7eb;
+        }
+        .copyright-footer p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .copyright-footer strong {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        /* Additional Responsive Meta Styles */
+        @media (max-width: 768px) {
+            .copyright-footer {
+                padding: 0.875rem 1rem;
+                font-size: 0.75rem;
+            }
+            
+            .copyright-footer p {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .copyright-footer {
+                padding: 0.75rem 0.875rem;
+                margin-top: 2rem;
+            }
+            
+            .copyright-footer p {
+                font-size: 0.7rem;
+                line-height: 1.4;
+            }
+        }
+
+        /* Prevent text selection issues on mobile */
+        input, button, select {
+            -webkit-appearance: none;
+            appearance: none;
+            border-radius: 0.5rem;
+        }
+
+        /* Improve touch targets on mobile */
+        @media (max-width: 640px) {
+            button, a.btn {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            input {
+                min-height: 44px;
+            }
+        }
+
+        /* Smooth transitions for mobile */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Modal responsive adjustments */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95% !important;
+                margin: 20% auto !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 98% !important;
+                margin: 30% auto !important;
+                padding: 1.5rem !important;
+            }
+
+            .modal-content h2 {
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Loader responsive */
+        @media (max-width: 480px) {
+            .loader-content {
+                padding: 1.5rem;
+            }
+
+            .loader-content p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Prevent layout shift on scroll */
+        html {
+            overflow-y: scroll;
+        }
+
+        /* Optimize for different pixel densities */
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>👥 Employee Management</h1>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <input 
+                type="text" 
+                placeholder="🔍 Search employees..." 
+                id="search" 
+                onkeyup="filter()"
+                aria-label="Search employees"
+            >
+            <button 
+                class="btn btn-success" 
+                onclick="window.location.href='/register'"
+                aria-label="Add new employee"
+            >
+                ➕ Add Employee
+            </button>
+            <button 
+                class="btn btn-primary" 
+                onclick="loadEmployees(currentPage)"
+                aria-label="Refresh employee list"
+            >
+                🔄 Refresh
+            </button>
+            <a 
+                href="/" 
+                class="btn btn-secondary"
+                aria-label="Go back to dashboard"
+            >
+                ← Back
+            </a>
+        </div>
+
+        <div id="employee-grid" class="employee-grid" role="grid" aria-label="Employee list"></div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" role="status" aria-live="polite" aria-label="Loading employees">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>Loading employees...</p>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div 
+        id="edit-modal" 
+        class="modal" 
+        role="dialog" 
+        aria-labelledby="edit-modal-title"
+        aria-hidden="true"
+    >
+        <div class="modal-content">
+            <h2 id="edit-modal-title">Edit Employee</h2>
+            <div class="form-group">
+                <label for="edit-emp-id">Employee ID</label>
+                <input type="text" id="edit-emp-id" readonly aria-describedby="emp-id-desc">
+                <span id="emp-id-desc" style="display: none;">Employee ID cannot be changed</span>
+            </div>
+            <div class="form-group">
+                <label for="edit-name">Name <span aria-label="required">*</span></label>
+                <input type="text" id="edit-name" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-department">Department</label>
+                <select id="edit-department">
+                    <option value="">Select Department</option>
+                    <option value="IT">IT</option>
+                    <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Operations">Operations</option>
+                </select>
+            </div>
+	            <div class="form-group">
+            <label for="edit-position">Position</label>
+            <input type="text" id="edit-position" placeholder="e.g., Senior Developer">
+        </div>
+
+            <div>
+                <button 
+                    class="btn btn-success" 
+                    onclick="saveEdit()"
+                    aria-label="Save employee changes"
+                >
+                    💾 Save
+                </button>
+                <button 
+                    class="btn btn-secondary" 
+                    onclick="closeModal()"
+                    aria-label="Cancel editing"
+                >
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="copyright-footer">
+        <p>© 2025 <strong>Oasys Tech Solution Pvt Ltd.</strong> All rights reserved.</p>
+    </footer>
+
+    <script src="/static/js/employees.js"></script>
+</body>
+</html>

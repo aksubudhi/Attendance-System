@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AttendEye Pro - Smart Attendance System</title>
+    <script src="/static/js/auth-check.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            color: var(--dark);
+        }
+
+        body.dark-theme {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        /* Updated header with blue gradient background */
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        body.dark-theme .header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Improved header branding */
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .header-logo {
+            width: 48px;
+            height: 48px;
+            animation: bounce 2s infinite;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            min-height: 38px;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+		            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+	.btn-success:disabled {
+	  opacity: 0.3; /* Reduce opacity to visually indicate disabled state */
+	  cursor: not-allowed; /* Change cursor to "not allowed" */
+	  /* Add any other desired styles for the disabled state */
+	}
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+	.btn-danger:disabled {
+	  opacity: 0.3; /* Reduce opacity to visually indicate disabled state */
+	  cursor: not-allowed; /* Change cursor to "not allowed" */
+	  /* Add any other desired styles for the disabled state */
+	}
+
+        /* Settings Modal */
+        .settings-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+        }
+
+        .settings-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .settings-content {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-theme .settings-content {
+            background: #1e293b;
+            color: white;
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        body.dark-theme .settings-header {
+            border-bottom-color: #475569;
+        }
+
+        .settings-header h2 {
+            font-size: 1.75rem;
+            color: var(--dark);
+        }
+
+        body.dark-theme .settings-header h2 {
+            color: white;
+        }
+
+        .close-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        body.dark-theme .close-btn {
+            background: #334155;
+            color: white;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .settings-section {
+            margin-bottom: 2rem;
+        }
+
+        .settings-section h3 {
+            font-size: 1.25rem;
+            color: #334155;
+            margin-bottom: 1rem;
+        }
+
+        body.dark-theme .settings-section h3 {
+            color: white;
+        }
+
+        .form-group-settings {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group-settings label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-theme .form-group-settings label {
+            color: white;
+        }
+
+        .form-group-settings input, .form-group-settings select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            font-size: 0.9375rem;
+            transition: all 0.3s;
+        }
+
+        body.dark-theme .form-group-settings input, body.dark-theme .form-group-settings select {
+            background: #334155;
+            border-color: #475569;
+            color: white;
+        }
+
+        .form-group-settings input:focus, .form-group-settings select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn-settings {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-primary-settings {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary-settings:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary-settings {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        body.dark-theme .btn-secondary-settings {
+            background: #334155;
+            color: white;
+        }
+
+        .connection-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .connection-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+
+        .connection-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+        }
+
+        .connection-status {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+        }
+
+        body.dark-theme .connection-status {
+            background: #0f172a;
+        }
+
+        .status-item {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            border: 2px solid;
+        }
+
+        .status-item.connected {
+            background: #d1fae5;
+            color: #065f46;
+            border-color: #10b981;
+        }
+
+        .status-item.disconnected {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #ef4444;
+        }
+
+        .theme-toggle {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .theme-option {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            background: white;
+        }
+
+        body.dark-theme .theme-option {
+            background: #334155;
+            border-color: #475569;
+            color: white;
+        }
+
+        .theme-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .theme-option.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .theme-option .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .status-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-theme .status-card {
+            background: rgba(30, 41, 59, 0.95);
+            color: white;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.connected {
+            background: var(--success);
+        }
+
+        .status-dot.disconnected {
+            background: var(--danger);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .status-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Video Card with Header */
+        .video-card {
+            background: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        body.dark-theme .video-card {
+            background: rgba(30, 41, 59, 0.95);
+        }
+
+        .video-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .video-card.exit .video-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        }
+
+        .video-feed {
+            width: 100%;
+            height: 350px;
+            background: #000;
+            object-fit: cover;
+        }
+
+        .video-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            padding: 1.5rem;
+            background: var(--light);
+        }
+
+        body.dark-theme .video-stats {
+            background: #0f172a;
+        }
+
+        .video-stat-item {
+            text-align: center;
+        }
+
+        .video-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .video-stat-label {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Updated dashboard stats to 4-column layout */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: left;
+            transition: all 0.3s ease;
+            border-left: 4px solid;
+        }
+
+        body.dark-theme .stat-card {
+            background: rgba(30, 41, 59, 0.95);
+            color: white;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card.present {
+            border-left-color: var(--success);
+        }
+
+        .stat-card.absent {
+            border-left-color: var(--danger);
+        }
+
+        .stat-card.total {
+            border-left-color: var(--primary);
+        }
+
+        .stat-card.avg {
+            border-left-color: #3b82f6;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .stat-title {
+            font-size: 0.875rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        .stat-card.avg .stat-title {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card.avg .stat-value {
+            color: white;
+        }
+
+        body.dark-theme .stat-value {
+            color: white;
+        }
+
+        .stat-subtext {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .stat-subtext.positive {
+            color: var(--success);
+        }
+
+        .stat-subtext.negative {
+            color: var(--danger);
+        }
+
+        .stat-subtext.neutral {
+            color: var(--secondary);
+        }
+
+        .stat-card.absent .stat-subtext {
+            color: var(--danger);
+        }
+
+        .stat-card.total .stat-subtext {
+            color: var(--primary);
+        }
+
+        .stat-card.avg .stat-subtext {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Activity Panel - NEW DESIGN */
+        .activity-panel {
+            background: var(--white);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        body.dark-theme .activity-panel {
+            background: rgba(30, 41, 59, 0.95);
+            color: white;
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        body.dark-theme .activity-header {
+            border-bottom-color: #475569;
+        }
+
+        .activity-header h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--dark);
+        }
+
+        body.dark-theme .activity-header h3 {
+            color: white;
+        }
+
+        .live-badge {
+            background: #059669;
+            color: var(--white);
+            padding: 0.35rem 0.875rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .activity-log {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--light);
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-theme .log-entry {
+            background: #0f172a;
+        }
+
+        .log-entry.entry-in {
+            border-left-color: var(--success);
+        }
+
+        .log-entry.entry-out {
+            border-left-color: var(--danger);
+        }
+
+        .log-details strong {
+            color: var(--dark);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        body.dark-theme .log-details strong {
+            color: white;
+        }
+
+        .log-meta {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--secondary);
+            margin-top: 0.25rem;
+            flex-wrap: wrap;
+        }
+
+        .log-time {
+            text-align: right;
+            font-size: 0.875rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .confidence-badge {
+            display: inline-block;
+            padding: 0.25rem 0.625rem;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .copyright-footer {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--light);
+            margin-top: 3rem;
+            font-size: 0.875rem;
+            color: var(--secondary);
+        }
+
+        body.dark-theme .copyright-footer {
+            background: rgba(30, 41, 59, 0.95);
+            color: white;
+            border-top-color: #475569;
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            .status-card {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .header-nav {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+	.open-settings-btn{
+		font-size:18px;}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>
+                <img src="/static/images/face-recognition.png" alt="Logo" class="header-logo">
+
+                <div>
+                                        <div style="font-size: 1.25rem;">AttendEye Pro</div>
+
+			<div style="font-size: 0.75rem; opacity: 0.9;">Smart Attendance System</div>
+                </div>
+            </h1>
+            <nav class="header-nav">
+                {% if user and (user.role == 'admin' or user.role == 'manager') %}
+                <a href="/register" class="btn btn-primary">+ Register Employee</a>
+                <a href="/employees" class="btn btn-secondary">👥 Employees</a>
+                {% endif %}
+                
+                <a href="/detailed-attendance" class="btn btn-secondary">📊 Reports</a>
+                
+                {% if user and user.role == 'admin' %}
+                <a href="/manage-users" class="btn btn-secondary" title="View, Edit, and Delete System Users">
+                    👥 Manage Users
+                </a>
+                {% endif %}
+                
+                <button class="btn btn-secondary open-settings-btn" id="open-settings-btn">⚙️</button>
+                <a href="/api/logout" class="btn btn-danger" onclick="return confirm('Are you sure?')"> Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="settings-modal" id="settings-modal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2>⚙️ Settings</h2>
+                <button class="close-btn" id="close-settings-btn">✕</button>
+            </div>
+
+            <div class="settings-section">
+                <h3>🎨 Theme</h3>
+                <div class="theme-toggle">
+                    <div class="theme-option active" id="light-theme-btn" data-theme="light">
+                        <div class="icon">☀️</div>
+                        <div>Light Mode</div>
+                    </div>
+                    <div class="theme-option" id="dark-theme-btn" data-theme="dark">
+                        <div class="icon">🌙</div>
+                        <div>Dark Mode</div>
+                    </div>
+                </div>
+            </div>
+            {% if user and (user.role == 'admin' or user.role == 'manager') %}
+            <div class="settings-section">
+                <h3>📹 Camera Configuration</h3>
+                
+                <div class="form-group-settings">
+                    <label>🚪 Entry Camera (IN) - RTSP URL:</label>
+                    <input type="text" id="entry-url-settings" placeholder="rtsp://username:password@ip:port/path">
+                </div>
+
+                <div class="form-group-settings">
+                    <label>🚶 Exit Camera (OUT) - RTSP URL:</label>
+                    <input type="text" id="exit-url-settings" placeholder="rtsp://username:password@ip:port/path">
+                </div>
+
+                <button class="btn-settings btn-secondary-settings" id="test-urls-btn">🔍 Test Connection</button>
+                <button class="btn-settings btn-primary-settings" id="save-urls-btn">💾 Save & Test URLs</button>
+
+                <div class="connection-status" id="connection-status" style="display: none;">
+                    <div class="status-item checking" id="entry-status">
+                        <div class="status-icon">⏳</div>
+                        <div>Entry Camera</div>
+                    </div>
+                    <div class="status-item checking" id="exit-status">
+                        <div class="status-icon">⏳</div>
+                        <div>Exit Camera</div>
+                    </div>
+                </div>
+
+                <div class="connection-message" id="connection-message" style="display: none;"></div>
+            </div>
+            {% endif %}
+            <button class="btn-settings btn-secondary-settings" id="close-settings-bottom">Close Settings</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Updated stats cards to 4-column layout with avg attendance -->
+        <div class="dashboard-stats" id="dashboard-stats">
+            <div class="stat-card present">
+                <div class="stat-title">👥 PRESENT TODAY</div>
+                <div class="stat-value" id="present-today">0</div>
+                <div class="stat-subtext" id="present-diff">+0% vs yesterday</div>
+            </div>
+            <div class="stat-card absent">
+                <div class="stat-title">❌ ABSENT TODAY</div>
+                <div class="stat-value" id="absent-today">0</div>
+                <div class="stat-subtext" id="absent-percent">0% of total</div>
+            </div>
+            <div class="stat-card total">
+                <div class="stat-title">👤 TOTAL EMPLOYEES</div>
+                <div class="stat-value" id="total-employees">0</div>
+                <div class="stat-subtext">Active workforce</div>
+            </div>
+            <div class="stat-card avg">
+                <div class="stat-title">📈 AVG ATTENDANCE</div>
+                <div class="stat-value" id="avg-attendance">0%</div>
+                <div class="stat-subtext">Last 30 days</div>
+            </div>
+        </div>
+
+        <!-- Status Card -->
+        {% if user and (user.role == 'admin' or user.role == 'manager') %}
+        <div class="status-card">
+            <div class="status-indicator">
+                <span class="status-dot disconnected" id="status-dot"></span>
+                <span id="status-text">System Disconnected</span>
+            </div>
+            <div class="status-actions">
+                <button class="btn btn-success" id="start-btn">▶ Start Monitoring</button>
+                <button class="btn btn-danger" id="stop-btn">⏸ Stop</button>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Video Grid -->
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-header">🚪 Entry Camera (IN)</div>
+                <img id="entry-feed" class="video-feed" alt="Entry Camera" src="/placeholder.svg">
+                <div class="video-stats">
+                    <div class="video-stat-item">
+                        <div class="video-stat-value" id="entry-faces">0</div>
+                        <div class="video-stat-label">Faces</div>
+                    </div>
+                    <div class="video-stat-item">
+                        <div class="video-stat-value" id="entry-recognized">0</div>
+                        <div class="video-stat-label">Recognized</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card exit">
+                <div class="video-header">🚶 Exit Camera (OUT)</div>
+                <img id="exit-feed" class="video-feed" alt="Exit Camera" src="/placeholder.svg">
+                <div class="video-stats">
+                    <div class="video-stat-item">
+                        <div class="video-stat-value" id="exit-faces">0</div>
+                        <div class="video-stat-label">Faces</div>
+                    </div>
+                    <div class="video-stat-item">
+                        <div class="video-stat-value" id="exit-recognized">0</div>
+                        <div class="video-stat-label">Recognized</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Panel - NEW DESIGN -->
+        {% if user and (user.role == 'admin' or user.role == 'manager') %}
+        <div class="activity-panel">
+            <div class="activity-header">
+                <h3>📋 Live Attendance Activity</h3>
+                <span id="live-badge" class="live-badge">● LIVE</span>
+            </div>
+            <div class="activity-log" id="attendance-log">
+                <div class="empty-state">
+                    <div class="empty-state-icon">⏳</div>
+                    <p>Waiting for attendance events...</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer class="copyright-footer">
+        <p>© 2025 <strong>Oasys Tech Solution Pvt Ltd.</strong> All rights reserved.</p>
+    </footer>
+
+    <script>
+    let ws = null;
+    let stats = {
+        entry: { faces: 0, recognized: 0 },
+        exit: { faces: 0, recognized: 0 }
+    };
+
+    window.addEventListener('load', function() {
+        console.log('Dashboard initializing...');
+        initializeSettingsModal();
+        loadTheme();
+        connectWebSocket();
+        attachEventListeners();
+        fetchStatsFromDatabase();
+        loadDashboardStats();
+    });
+
+
+    function initializeSettingsModal() {
+        const openBtn = document.getElementById('open-settings-btn');
+        const closeBtn = document.getElementById('close-settings-btn');
+        const closeBottomBtn = document.getElementById('close-settings-bottom');
+        const modal = document.getElementById('settings-modal');
+
+        openBtn.addEventListener('click', async () => {
+            modal.classList.add('active');
+            await loadCameraUrls();
+        });
+
+        const closeModal = () => modal.classList.remove('active');
+        closeBtn.addEventListener('click', closeModal);
+        closeBottomBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        if (document.getElementById('save-urls-btn')) {
+            document.getElementById('save-urls-btn').addEventListener('click', saveCameraUrls);
+        }
+        if (document.getElementById('test-urls-btn')) {
+            document.getElementById('test-urls-btn').addEventListener('click', testCameraConnectionOnly);
+        }
+    }
+
+    function setTheme(theme) {
+        document.body.className = theme === 'dark' ? 'dark-theme' : '';
+        localStorage.setItem('theme', theme);
+
+        const lightBtn = document.getElementById('light-theme-btn');
+        const darkBtn = document.getElementById('dark-theme-btn');
+
+        if (theme === 'dark') {
+            lightBtn.classList.remove('active');
+            darkBtn.classList.add('active');
+        } else {
+            darkBtn.classList.remove('active');
+            lightBtn.classList.add('active');
+        }
+    }
+
+    function loadTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        document.getElementById('light-theme-btn').addEventListener('click', () => setTheme('light'));
+        document.getElementById('dark-theme-btn').addEventListener('click', () => setTheme('dark'));
+    }
+
+    async function loadCameraUrls() {
+        try {
+            console.log('Loading camera URLs from backend...');
+
+            const response = await fetch('/api/camera/urls', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Loaded URLs:', data);
+
+                document.getElementById('entry-url-settings').value = data.entry_url || '';
+                document.getElementById('exit-url-settings').value = data.exit_url || '';
+
+                console.log('✅ URLs loaded successfully');
+            } else {
+                console.error('Failed to load camera URLs:', response.status);
+                document.getElementById('entry-url-settings').value = '';
+                document.getElementById('exit-url-settings').value = '';
+            }
+        } catch (error) {
+            console.error('Error loading camera URLs:', error);
+            document.getElementById('entry-url-settings').value = '';
+            document.getElementById('exit-url-settings').value = '';
+        }
+    }
+
+    async function testCameraConnectionOnly() {
+        const entryUrl = document.getElementById('entry-url-settings').value.trim();
+        const exitUrl = document.getElementById('exit-url-settings').value.trim();
+
+        if (!entryUrl || !exitUrl) {
+            alert('Please enter both camera URLs');
+            return;
+        }
+
+        document.getElementById('connection-status').style.display = 'flex';
+
+        try {
+            const response = await fetch('/api/camera/test-connection', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ entry_url: entryUrl, exit_url: exitUrl })
+            });
+
+            const result = await response.json();
+            updateCameraStatusUI(result.entry, result.exit);
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error testing cameras');
+        }
+    }
+
+    async function saveCameraUrls() {
+        const entryUrl = document.getElementById('entry-url-settings').value.trim();
+        const exitUrl = document.getElementById('exit-url-settings').value.trim();
+
+        if (!entryUrl || !exitUrl) {
+            alert('Please enter both camera URLs');
+            return;
+        }
+
+        try {
+            const testResponse = await fetch('/api/camera/test-connection', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ entry_url: entryUrl, exit_url: exitUrl })
+            });
+
+            const testResult = await testResponse.json();
+            updateCameraStatusUI(testResult.entry, testResult.exit);
+
+            if (testResult.success) {
+                const saveResponse = await fetch('/api/camera/urls', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ entry_url: entryUrl, exit_url: exitUrl })
+                });
+
+                const saveResult = await saveResponse.json();
+
+                if (saveResult.success) {
+                    alert('URLs saved successfully!');
+                    await loadCameraUrls();
+                }
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error saving URLs');
+        }
+    }
+
+    function updateCameraStatusUI(entryResult, exitResult) {
+        const entryStatus = document.getElementById('entry-status');
+        const exitStatus = document.getElementById('exit-status');
+
+        entryStatus.className = entryResult.connected ? 'status-item connected' : 'status-item disconnected';
+        entryStatus.innerHTML = `<div>${entryResult.connected ? '✅' : '❌'} Entry Camera</div>`;
+
+        exitStatus.className = exitResult.connected ? 'status-item connected' : 'status-item disconnected';
+        exitStatus.innerHTML = `<div>${exitResult.connected ? '✅' : '❌'} Exit Camera</div>`;
+
+        const messageDiv = document.getElementById('connection-message');
+        messageDiv.style.display = 'block';
+        messageDiv.className = (entryResult.connected && exitResult.connected) ? 'connection-message success' : 'connection-message error';
+        messageDiv.textContent = (entryResult.connected && exitResult.connected) ? '✅ Both cameras connected!' : '❌ Connection issues';
+    }
+
+    async function fetchStatsFromDatabase() {
+        try {
+            const response = await fetch('/api/attendance/stats/today', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                console.error('Failed to fetch stats:', response.status);
+                return;
+            }
+
+            const data = await response.json();
+
+            if (data.success) {
+                document.getElementById('entry-recognized').textContent = data.total_in;
+                document.getElementById('exit-recognized').textContent = data.total_out;
+                console.log(`DB Stats - IN: ${data.total_in}, OUT: ${data.total_out}`);
+            }
+        } catch (error) {
+            console.error('Error fetching stats:', error);
+        }
+    }
+
+    async function loadDashboardStats() {
+        try {
+            const [dashboardRes, todayRes] = await Promise.all([
+                fetch('/api/dashboard/stats', { credentials: 'include' }),
+                fetch('/api/attendance/stats/today', { credentials: 'include' })
+            ]);
+
+            const dashboardData = await dashboardRes.json();
+            const todayData = await todayRes.json();
+
+            if (dashboardRes.ok && todayRes.ok) {
+                const present = dashboardData.present_today || 0;
+                const absent = dashboardData.absent_today || 0;
+                const total = dashboardData.total_employees || 0;
+                const yesterday = dashboardData.present_yesterday || 0;
+                const avgAttendance = dashboardData.avg_attendance || 0;
+
+                const diff = yesterday > 0 ? (((present - yesterday) / yesterday) * 100).toFixed(1) : 0;
+
+                document.getElementById('present-today').textContent = present;
+                document.getElementById('absent-today').textContent = absent;
+                document.getElementById('total-employees').textContent = total;
+                document.getElementById('avg-attendance').textContent = `${avgAttendance.toFixed(1)}%`;
+
+                const presentDiffEl = document.getElementById('present-diff');
+                presentDiffEl.textContent = `${diff >= 0 ? '+' : ''}${diff}% vs yesterday`;
+                
+                presentDiffEl.classList.remove('positive', 'negative', 'neutral');
+                
+                if (diff < 0) {
+                    presentDiffEl.classList.add('negative');
+                } else if (diff > 0) {
+                    presentDiffEl.classList.add('positive');
+                } else {
+                    presentDiffEl.classList.add('neutral');
+                }
+
+                document.getElementById('absent-percent').textContent =
+                    total > 0 ? `${((absent / total) * 100).toFixed(1)}% of total` : '0% of total';
+            }
+        } catch (err) {
+            console.error('Error fetching dashboard stats:', err);
+        }
+    }
+
+    setInterval(loadDashboardStats, 30000);
+    setInterval(fetchStatsFromDatabase, 5000);
+
+    function connectWebSocket() {
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
+
+        ws.onopen = () => {
+            const statusDot = document.getElementById('status-dot');
+            if (statusDot) statusDot.className = 'status-dot connected';
+            const statusText = document.getElementById('status-text');
+            if (statusText) statusText.textContent = 'System Connected';
+            console.log('WebSocket connected');
+        };
+
+	ws.onmessage = (event) => {
+	    const data = JSON.parse(event.data);
+	    console.log('📨 WebSocket message received:', data.type);
+
+	    if (data.type === 'connection_status') {
+		// 🟢 NEW: Handle connection status
+		handleConnectionStatus(data);
+	    } else if (data.type === 'frame') {
+		// Handle frame - now may come from cache or live
+		handleFrame(data);
+	    } else if (data.type === 'attendance') {
+		handleAttendance(data);
+	    } else if (data.type === 'status') {
+		handleStatusUpdate(data);
+	    } else if (data.type === 'error') {
+		console.error('❌ Error from server:', data.message);
+	    }
+	};
+
+        ws.onclose = () => {
+            const statusDot = document.getElementById('status-dot');
+            if (statusDot) statusDot.className = 'status-dot disconnected';
+            const statusText = document.getElementById('status-text');
+            if (statusText) statusText.textContent = 'System Disconnected';
+            setTimeout(connectWebSocket, 3000);
+        };
+    }
+
+    function handleConnectionStatus(data) {
+	    console.log('🟢 Connection Status:', data);
+
+	    const statusDot = document.getElementById('status-dot');
+	    const statusText = document.getElementById('status-text');
+            const startBtn = document.getElementById('start-btn');
+            const stopBtn = document.getElementById('stop-btn');
+            const liveBadge = document.getElementById('live-badge');
+	    if (data.cameras_running) {
+		// Cameras are already running - update UI
+		startBtn.disabled=true;
+		if (statusDot) statusDot.className = 'status-dot connected';
+		if (statusText) statusText.textContent = `Cameras Running `;
+
+		console.log(`✅ Cameras already running, started by: ${data.started_by}`);
+
+		// 🟢 NEW: Automatically request cached frames
+		if (ws && ws.readyState === WebSocket.OPEN) {
+		    console.log('📦 Requesting cached frames from server...');
+		    ws.send(JSON.stringify({ action: 'get_cached_frames' }));
+		}
+	    } else {
+		 stopBtn.disabled = true;
+		// Cameras not running
+		liveBadge.style.display = 'none';
+		if (statusDot) statusDot.className = 'status-dot disconnected';
+		if (statusText) statusText.textContent = 'System Connected (Cameras Stopped)';
+		console.log('⏹️ Cameras not running');
+	    }
+
+	    console.log(`📊 Active users: ${data.active_users}`);
+	}
+
+
+	function handleFrame(data) {
+	    const feedImg = document.getElementById(`${data.camera}-feed`);
+	    if (feedImg) {
+		feedImg.src = `data:image/jpeg;base64,${data.image}`;
+		console.log(`🎬 Frame updated for ${data.camera}`);
+	    }
+
+	    stats[data.camera].faces = data.faces_count || 0;
+	    const faceCountEl = document.getElementById(`${data.camera}-faces`);
+	    if (faceCountEl) {
+		faceCountEl.textContent = stats[data.camera].faces;
+	    }
+	}
+
+    function handleAttendance(data) {
+        addAttendanceEntry(data);
+        fetchStatsFromDatabase();
+    }
+
+    function handleStatusUpdate(data) {
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+
+        if (data.camera_status === 'started') {
+            if (statusDot) statusDot.className = 'status-dot connected';
+            if (statusText) statusText.textContent = 'Cameras Running';
+        } else if (data.camera_status === 'stopped') {
+            if (statusDot) statusDot.className = 'status-dot disconnected';
+            if (statusText) statusText.textContent = 'Cameras Stopped';
+            document.getElementById('entry-feed').src = '';
+            document.getElementById('exit-feed').src = '';
+        }
+    }
+
+    function addAttendanceEntry(data) {
+        const log = document.getElementById('attendance-log');
+        if (!log) return;
+
+        const emptyState = log.querySelector('.empty-state');
+        if (emptyState) emptyState.remove();
+
+        const entry = document.createElement('div');
+        entry.className = `log-entry entry-${data.event_type.toLowerCase()}`;
+
+        const istTime = new Date(data.timestamp);
+        const time = istTime.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        });
+
+        const confidencePercent = (data.confidence * 100).toFixed(1);
+
+        entry.innerHTML = `
+            <div class="log-details">
+                <strong>${data.name || 'Unknown'}</strong>
+                <div class="log-meta">
+                    <span>ID: ${data.emp_id}</span> • <span>${data.event_type}</span>
+                    <span class="confidence-badge">${confidencePercent}%</span>
+                </div>
+            </div>
+            <div class="log-time">${time}</div>
+        `;
+
+        log.insertBefore(entry, log.firstChild);
+        while (log.children.length > 15) log.removeChild(log.lastChild);
+    }
+
+    function attachEventListeners() {
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+	const liveBadge = document.getElementById('live-badge');
+
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({ action: 'start' }));
+		    console.log("Start");
+		    startBtn.disabled = true;
+		    stopBtn.disabled = false;
+		    liveBadge.style.display = 'block';
+                }
+            });
+        }
+
+        if (stopBtn) {
+            stopBtn.addEventListener('click', () => {
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({ action: 'stop' }));
+		    startBtn.disabled = false;
+		    stopBtn.disabled = true;
+		    liveBadge.style.display = 'none';
+                }
+            });
+        }
+    }
+    </script>
+</body>
+</html>
+

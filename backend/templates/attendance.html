@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Records</title>
+    <script src="/static/js/auth-check.js"></script>
+    <link rel="stylesheet" href="/static/css/attendance.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .copyright-footer {
+            background: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 2px solid #e5e7eb;
+        }
+        .copyright-footer p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .copyright-footer strong {
+            color: #1e293b;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="2"/>
+                <line x1="3" y1="9" x2="21" y2="9" stroke="white" stroke-width="2"/>
+                <line x1="8" y1="2" x2="8" y2="6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <line x1="16" y1="2" x2="16" y2="6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+        <h1>Attendance Records</h1>
+        <p>First IN and Last OUT per person per day</p>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <div class="controls-row">
+                <div class="date-group">
+                    <label>From:</label>
+                    <input type="date" id="date-from" onchange="load()">
+                </div>
+                <div class="date-group">
+                    <label>To:</label>
+                    <input type="date" id="date-to" onchange="load()">
+                </div>
+                <div class="search-group">
+                    <label>Search:</label>
+                    <input type="text" placeholder="Search by name or ID..." id="search" onkeyup="filter()">
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="load()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M21 3V9M21 9H15M21 9L15 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Refresh
+                </button>
+                <button class="btn btn-success" onclick="exportData()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Export Excel
+                </button>
+                <a href="/" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Back
+                </a>
+            </div>
+
+            <div class="stats-container" id="stats-container">
+                <!-- Reordered stat cards: Present first, then Absent, then Total -->
+                <div class="stat-card present">
+                    <div class="stat-label">Present Today</div>
+                    <div class="stat-value" id="stat-present">-</div>
+                </div>
+                <div class="stat-card absent">
+                    <div class="stat-label">Absent Today</div>
+                    <div class="stat-value" id="stat-absent">-</div>
+                </div>
+                <div class="stat-card total">
+                    <div class="stat-label">Total Employees</div>
+                    <div class="stat-value" id="stat-total">-</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>First IN</th>
+                        <th>Last OUT</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 3rem; color: #64748b;">
+                            Select date range and click Refresh
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="copyright-footer">
+        <p>© 2025 <strong>Oasys Tech Solution Pvt Ltd.</strong> All rights reserved.</p>
+    </footer>
+
+    <script src="/static/js/attendance.js"></script>
+</body>
+</html>
+

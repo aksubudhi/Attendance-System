@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <link rel="stylesheet" href="/static/css/registration.css ">
+</head>
+<body>
+    <div class="header">
+        <h1>👤 Employee Registration</h1>
+    </div>
+
+    <div class="container">
+        <!-- Step 1: Employee Information -->
+        <div id="step1" class="step-container active">
+            <div class="step-header">
+                <h2>Step 1: Employee Information</h2>
+            </div>
+            <form id="emp-form" class="registration-form">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter employee name">
+                </div>
+
+                <div class="form-group">
+                    <label for="emp-id">Employee ID *</label>
+                    <input type="text" id="emp-id" name="emp-id" required placeholder="Enter employee ID">
+                </div>
+		
+		<div class="form-group">
+                    <label for="position">Position</label>
+                    <input type="text" id="position" name="position" placeholder="Enter job position">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="department">Department *</label>
+                    <select id="department" name="department" required>
+                        <option value="">Select Department</option>
+                        <option value="IT">IT</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="HR">HR</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Support">Support</option>
+                    </select>
+                </div>
+		
+		
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="goBack()">← Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep()">Next Step →</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 2: Face Registration -->
+        <div id="step2" class="step-container">
+            <div class="step-header">
+                <h2>Step 2: Face Registration</h2>
+                <!-- Added progress bar with styling -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <p class="progress-text" id="progress-text">0/8 angles captured (min 6 required)</p>
+            </div>
+
+            <div class="face-registration-layout">
+                <!-- Left: Camera Section -->
+                <div class="camera-section">
+                    <div class="video-container">
+                        <video id="video" autoplay playsinline></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-large" id="start-camera-btn" onclick="startCamera()">
+                        📷 Start Camera
+                    </button>
+                </div>
+
+                <!-- Right: Capture Angles Section -->
+                <div class="captures-section">
+                    <div class="captures-grid">
+                        <div class="capture-card" data-angle="front">
+                            <div class="angle-name">Front Face</div>
+                            <button type="button" class="btn btn-capture" onclick="captureAngle('front')">Capture</button>
+                            <div class="capture-status"></div>
+                        </div>
+
+                        <div class="capture-card" data-angle="looking_up">
+                            <div class="angle-name">Looking Up</div>
+                            <button type="button" class="btn btn-capture" onclick="captureAngle('looking_up')">Capture</button>
+                            <div class="capture-status"></div>
+                        </div>
+
+                        <div class="capture-card" data-angle="left">
+                            <div class="angle-name">Left Profile</div>
+                            <button type="button" class="btn btn-capture" onclick="captureAngle('left')">Capture</button>
+                            <div class="capture-status"></div>
+                        </div>
+
+                        <div class="capture-card" data-angle="right">
+                            <div class="angle-name">Right Profile</div>
+                            <button type="button" class="btn btn-capture" onclick="captureAngle('right')">Capture</button>
+                            <div class="capture-status"></div>
+                        </div>
+
+                        <div class="capture-card" data-angle="up_left">
+                            <div class="angle-name">Up-Left</div>
+                            <button type="button" class="btn btn-capture" onclick="captureAngle('up_left')">Capture</button>
+                            <div class="capture-status"></div>
+                        </div>
+
+                        <div class="capture-card" data-angle="up_right">
+                            <div class="angle-name">Up-Right</div>
+                            <button type="button" class="btn btn-capture" onclick="captureAngle('up_right')">Capture</button>
+                            <div class="capture-status"></div>
+                        </div>
+
+                        <div class="capture-card" data-angle="tilt_left">
+                            <div class="angle-name">Tilt Left</div>
+                            <button type="button" class="btn btn-capture" onclick="captureAngle('tilt_left')">Capture</button>
+                            <div class="capture-status"></div>
+                        </div>
+
+                        <div class="capture-card" data-angle="tilt_right">
+                            <div class="angle-name">Tilt Right</div>
+                            <button type="button" class="btn btn-capture" onclick="captureAngle('tilt_right')">Capture</button>
+                            <div class="capture-status"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">← Back</button>
+                <button type="button" class="btn btn-success" id="complete-btn" onclick="completeRegistration()" disabled>
+                    ✓ Complete Registration
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Added quality notification popup -->
+    <div id="quality-notification" class="quality-notification"></div>
+    <div id="status-message" class="status-message"></div>
+
+    <div class="copyright-footer">
+        <p> © 2025. All rights reserved and Copyrights by Oasys Tech Solution Pvt Ltd..</p>
+    </div>
+
+    <script src="/static/js/registration.js"></script>
+</body>
+</html>
+

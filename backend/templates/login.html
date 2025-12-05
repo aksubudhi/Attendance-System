@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CCTV Attendance System</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- NO auth-check.js on login page to prevent redirect loop -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .copyright-text {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .copyright-text strong {
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+		
+	    <div class="login-header">
+	    <div class="logo bounce">
+        	<img src="/static/images/face-recognition.png" alt="Logo" class="logo-img">
+    	</div>
+    	<h1>CCTV Attendance System</h1>
+    	<p>Secure Face Recognition Platform</p>
+	</div>
+
+            <form action="/api/login" method="POST" class="login-form" onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required 
+                           placeholder="Enter your username" autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Enter your password" autocomplete="current-password">
+                </div>
+
+                <div id="error-message" class="error-message" style="display: none;"></div>
+
+                <button type="submit" class="btn btn-primary" id="login-btn">
+                    🔒 Login
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="copyright-text">
+        <p>© 2025 <strong>Oasys Tech Solution Pvt Ltd.</strong> All rights reserved.</p>
+    </div>
+
+    <script>
+        // Check if already logged in and redirect to dashboard
+        async function checkIfLoggedIn() {
+            try {
+                const response = await fetch('/api/auth/check', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                
+                if (response.ok) {
+                    // Already logged in, redirect to dashboard
+                    console.log('Already logged in, redirecting to dashboard...');
+                    window.location.href = '/';
+                }
+            } catch (error) {
+                // Not logged in, stay on login page
+                console.log('Not logged in, showing login form');
+            }
+        }
+        
+        // Run check on page load
+        checkIfLoggedIn();
+        
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('login-btn');
+            const errorMsg = document.getElementById('error-message');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Disable button and show loading
+            btn.disabled = true;
+            btn.textContent = '⏳ Logging in...';
+            errorMsg.style.display = 'none';
+            
+            try {
+                const formData = new FormData();
+                formData.append('username', username);
+                formData.append('password', password);
+                
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    // Redirect to dashboard
+                    console.log('Login successful, redirecting...');
+                    window.location.href = '/';
+                } else {
+                    const data = await response.json();
+                    errorMsg.textContent = data.detail || 'Invalid credentials';
+                    errorMsg.style.display = 'block';
+                    btn.disabled = false;
+                    btn.textContent = '🔒 Login';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorMsg.textContent = 'Login failed. Please try again.';
+                errorMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = '🔒 Login';
+            }
+        }
+    </script>
+</body>
+</html>
