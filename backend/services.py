@@ -1099,14 +1099,13 @@ class AuthenticationService:
         """Create a new session for authenticated user"""
         try:
             session_token = secrets.token_urlsafe(32)
-            expires_at = datetime.datetime.now() + self.session_timeout
-
+            # expires_at calculated in DB to avoid timezone mismatch
             with self.db_service.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
                     INSERT INTO sessions (session_token, user_id, expires_at, created_at)
-                    VALUES (%s, %s, %s, CURRENT_TIMESTAMP)
-                """, (session_token, user_id, expires_at))
+                    VALUES (%s, %s, CURRENT_TIMESTAMP + INTERVAL '8 hours', CURRENT_TIMESTAMP)
+                """, (session_token, user_id))
                 conn.commit()
                 cursor.close()
 
@@ -1122,23 +1121,23 @@ class AuthenticationService:
             with self.db_service.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute("""
-                    SELECT s.user_id, u.username, u.full_name, u.email, u.role, s.expires_at
+                    SELECT s.user_id, u.username, u.full_name, u.email, u.role
                     FROM sessions s
                     JOIN users u ON s.user_id = u.id
-                    WHERE s.session_token = %s AND s.is_active = TRUE AND u.is_active = TRUE
+                    WHERE s.session_token = %s 
+                    AND s.is_active = TRUE 
+                    AND u.is_active = TRUE
+                    AND s.expires_at > CURRENT_TIMESTAMP
                 """, (session_token,))
 
                 result = cursor.fetchone()
                 cursor.close()
 
                 if not result:
+                    # If not found (or expired/inactive), return None
                     return None
 
-                user_id, username, full_name, email, role, expires_at = result
-
-                if expires_at < datetime.datetime.now():
-                    self.delete_session(session_token)
-                    return None
+                user_id, username, full_name, email, role = result
 
                 return {
                     'id': user_id,
