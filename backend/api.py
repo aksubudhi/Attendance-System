@@ -137,9 +137,13 @@ app = FastAPI(
     redoc_url="/api/redoc"
 )
 
+# Parse comma-separated origins
+origins = os.getenv("FRONTEND_HOST", "http://localhost:5173").split(",")
+origins = [origin.strip() for origin in origins]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_HOST")],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
