@@ -235,8 +235,9 @@ async def login(request: Request, username: str = Form(...), password: str = For
     log_audit(user['id'], "login_success", f"User logged in: {username}", request)
     
     response = JSONResponse(content={"success": True, "user": user})
+    # UPDATED: Secure=True and SameSite=None required for Cross-Origin (Frontend -> Backend)
     response.set_cookie(key="session_token", value=session_token, httponly=True, 
-                       max_age=3600 * 8, samesite="lax", secure=False)
+                       max_age=3600 * 8, samesite="none", secure=True)
     
     logger.info(f"Login successful: {username}")
     return response
