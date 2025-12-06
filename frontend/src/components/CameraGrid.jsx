@@ -8,9 +8,22 @@ export default function CameraGrid() {
     const [monitoring, setMonitoring] = useState(false);
     const [activeUsers, setActiveUsers] = useState(0);
 
-    const wsUrl = `ws://${window.location.host.split(':')[0]}:8000/ws`;
-    // Development override if needed: 
-    // const wsUrl = 'ws://localhost:8000/ws';
+    // DYNAMIC WEBSOCKET URL CONSTRUCTION
+    // Uses the API Base URL from .env (e.g., https://backend.onrender.com)
+    // Replaces http:// -> ws:// and https:// -> wss://
+    const getWsUrl = () => {
+        const apiBase = import.meta.env.VITE_API_BASE_URL;
+        // If no env var, fallback to safe default or window location
+        if (!apiBase) {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            return `${protocol}//${window.location.host}/ws`;
+        }
+
+        // Replace http sequence with ws sequence
+        return apiBase.replace(/^http/, 'ws') + '/ws';
+    };
+
+    const wsUrl = getWsUrl();
 
     useEffect(() => {
         const ws = new WebSocket(wsUrl);
