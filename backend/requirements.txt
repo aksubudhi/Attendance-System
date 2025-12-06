@@ -5,20 +5,24 @@ jinja2>=3.1.4
 sqlalchemy>=2.0.36
 redis>=5.2.0
 bcrypt>=4.2.0
-numpy>=2.1.0
-scipy>=1.14.0
-pandas>=2.2.0
+numpy>=1.26.4        # Best stable for Python 3.11
+scipy>=1.11.4        # Compatible with numpy 1.26.x + Python 3.11
+pandas>=2.1.4
 openpyxl>=3.1.5
-scikit-learn>=1.5.2
-opencv-python-headless>=4.10.0.84
+scikit-learn>=1.4.2  # Last stable known for Python 3.11
+opencv-python-headless>=4.9.0.80
 albumentations>=1.4.20
-# insightface and dependencies
-insightface>=0.7.3
-# Use CPU version of FAISS for Python 3.13 compatibility
-faiss-cpu>=1.7.4
-# Onnxruntime (CPU) is safer for 3.13. Uncomment GPU if you have wheels.
-onnxruntime>=1.19.2
-# onnxruntime-gpu>=1.19.2
+
+# Face recognition + AI packages
+insightface>=0.7.3           # Works on Python 3.11
+faiss-cpu>=1.7.4             # Available wheels for 3.11
+onnxruntime>=1.17.3          # Stable for Python 3.11
+# onnxruntime-gpu>=1.17.3
+
+# Database
 psycopg2-binary>=2.9.10
 python-dotenv>=1.0.1
+
+# Scheduling
 schedule
+
