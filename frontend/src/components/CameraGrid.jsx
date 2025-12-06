@@ -9,14 +9,25 @@ export default function CameraGrid() {
     const [activeUsers, setActiveUsers] = useState(0);
 
     // DYNAMIC WEBSOCKET URL CONSTRUCTION
-    // Uses the API Base URL from .env (e.g., https://backend.onrender.com)
-    // Replaces http:// -> ws:// and https:// -> wss://
+    // Uses the API Base URL from .env (e.g., https://backend.onrender.com/api)
+    // STRIPS '/api' suffix if present, then replaces http -> ws
     const getWsUrl = () => {
-        const apiBase = import.meta.env.VITE_API_BASE_URL;
+        let apiBase = import.meta.env.VITE_API_BASE_URL;
+
         // If no env var, fallback to safe default or window location
         if (!apiBase) {
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
             return `${protocol}//${window.location.host}/ws`;
+        }
+
+        // Remove trailing slash if present
+        if (apiBase.endsWith('/')) {
+            apiBase = apiBase.slice(0, -1);
+        }
+
+        // Remove '/api' suffix if present (because WS is at /ws, not /api/ws)
+        if (apiBase.endsWith('/api')) {
+            apiBase = apiBase.slice(0, -4);
         }
 
         // Replace http sequence with ws sequence
