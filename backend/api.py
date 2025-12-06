@@ -144,6 +144,7 @@ origins = [origin.strip() for origin in origins]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=r"https://attendance-system.*\.vercel\.app", # Allow all Vercel previews for this app
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
